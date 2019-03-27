@@ -44,9 +44,7 @@
     <div class="form-group">
         <label>Controller Type</label>
         <select class="form-control" data-name="controllerType">
-            <option value="Grbl">Grbl</option>
-            <option value="Smoothie">Smoothie</option>
-            <option value="TinyG">TinyG</option>
+            <option value="Marlin">Marlin</option>
         </select>
     </div>
     <div class="form-group">
@@ -56,14 +54,9 @@
     <div class="form-group">
         <label>Baud rate</label>
         <select class="form-control" data-name="baudrate">
-            <option value="250000">250000</option>
-            <option value="115200" selected>115200</option>
-            <option value="57600">57600</option>
-            <option value="38400">38400</option>
-            <option value="19200">19200</option>
-            <option value="9600">9600</option>
-            <option value="4800">4800</option>
-            <option value="2400">2400</option>
+            <option value="250000" selected>250000</option>
+            <option value="115200">115200</option>
+            
         </select>
     </div>
     <div class="form-group" style="margin-bottom: 0 ">
@@ -154,18 +147,20 @@
             </div>
             <div class="row no-gutter">
                 <div class="col-xs-2" data-name="wpos-label">
-                    WPos:
+                    Extruder Temp
                 </div>
                 <div class="col-xs-10">
                     <div class="col-xs-4">
                         <div class="axis-position" data-name="wpos-x">0.000</div>
                     </div>
+					<!---
                     <div class="col-xs-4">
                         <div class="axis-position" data-name="wpos-y">0.000</div>
                     </div>
                     <div class="col-xs-4">
                         <div class="axis-position" data-name="wpos-z">0.000</div>
                     </div>
+					-->
                 </div>
             </div>
         </div>
@@ -207,10 +202,10 @@
                     <button
                         type="button"
                         class="btn btn-default"
-                        title="G28"
+                        title="MTR OFF"
                         onclick="cnc.sendMove('G28')"
                     >
-                        G28
+                        MTR OFF
                     </button>
                 </div>
                 <div class="col-xs-2">
@@ -219,7 +214,7 @@
                         class="btn btn-default"
                         onclick="cnc.sendMove('G30')"
                     >
-                        G30
+                        EMER
                     </button>
                 </div>
                 <div class="col-xs-2">
