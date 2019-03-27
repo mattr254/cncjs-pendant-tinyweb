@@ -51,10 +51,7 @@ socket.on('close', function() {
 });
 
 // constants
-var GRBL = 'Grbl';
-var SMOOTHIE = 'Smoothie';
-var TINYG = 'TinyG';
-
+var MARLIN = 'Marlin';
 // Workflow State
 var WORKFLOW_STATE_RUNNING = 'running';
 var WORKFLOW_STATE_PAUSED = 'paused';
@@ -84,12 +81,9 @@ var CNCController = function() {
         'feeder:status': [],
         'sender:status': [],
         'workflow:state': [],
-        'Grbl:state': [],
-        'Grbl:settings': [],
-        'Smoothie:state': [],
-        'Smoothie:settings': [],
-        'TinyG:state': [],
-        'TinyG:settings': []
+		'Marlin:state': [],
+		'Marlin:settings': [],
+        
     };
 
     this.port = '';
@@ -117,30 +111,16 @@ var CNCController = function() {
             if (eventName === 'workflow:state') {
                 this.workflowState = args[0];
             }
-            if (eventName === 'Grbl:state') {
-                this.type = GRBL;
+            
+            if (eventName === 'Marlin:state') {
+                this.type = MARLIN;
                 this.state = args[0];
             }
-            if (eventName === 'Grbl:settings') {
-                this.type = GRBL;
+            if (eventName === 'Marlin:settings') {
+                this.type = MARLIN;
                 this.settings = args[0];
             }
-            if (eventName === 'Smoothie:state') {
-                this.type = SMOOTHIE;
-                this.state = args[0];
-            }
-            if (eventName === 'Smoothie:settings') {
-                this.type = SMOOTHIE;
-                this.settings = args[0];
-            }
-            if (eventName === 'TinyG:state') {
-                this.type = TINYG;
-                this.state = args[0];
-            }
-            if (eventName === 'TinyG:settings') {
-                this.type = TINYG;
-                this.settings = args[0];
-            }
+                     
 
             this.callbacks[eventName].forEach(function(callback) {
                 callback.apply(callback, args);
@@ -172,7 +152,8 @@ CNCController.prototype.off = function(eventName, callback) {
 };
 
 CNCController.prototype.openPort = function(port, options) {
-    socket.emit('open', port, options);
+    console.log(port)
+	socket.emit('open', port, options);
 
     this.type = options.controllerType;
     this.port = port;
